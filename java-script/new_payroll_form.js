@@ -82,16 +82,18 @@ salary.oninput = function() {
 
 //validation for name
 const name = document.querySelector('#name');
-const nameError = document.querySelector('.name-error');
+const nameError = document.querySelector('#name-error');
 name.addEventListener('input', function() {
     let nameRegex = RegExp('^[A-Z]{1,}[a-z A-Z]{2,}$');
     if(nameRegex.test(name.value))
         nameError.textContent = "";
     else
-        nameError.textContent = "Name is incorrect";
+        nameError.textContent = "Name is incorrect  Rule : 1st letter should in caps,  Should contain min 3 letter";
 });
 
-//save function
+/**
+ * Function to save the employee details
+ */
 function save() {
     try {
         let name = document.querySelector('#name').value;
