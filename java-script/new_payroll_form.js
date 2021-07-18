@@ -101,20 +101,19 @@ function save() {
         }else{
             namefinal = name;
         }
-        let departments = document.querySelector('#department').value;
-        //let gender = document.querySelector('input[name=gender]:checked').value;
-        //let deptList = new Array();
-        //let departments = document.querySelectorAll('input[name=department]:checked');
-        //for (let i = 0; i < departments.length; i++) {
-           // deptList.push(department[i].value);
-        //}
+        let gender = document.querySelector('input[name=gender]:checked').value;
+        let deptList = new Array();
+        let departments = document.querySelectorAll('input[name=department]:checked');
+        for (let i = 0; i < departments.length; i++) {
+         deptList.push(department[i].value);
+        }
         let salary = document.querySelector('#salary').value;
         let startDate = document.querySelector('#startDate').value;
         console.log("startdate",startDate);
        
                    
         let notes = document.querySelector('#notes').value;
-        let newEmployee = new EmployeePayrollData(namefinal, gender, departments, salary, startDate, notes);
+        let newEmployee = new EmployeePayrollData(namefinal, gender, deptList, salary, startDate, notes);
         alert(newEmployee);
     } catch (error) {
         alert(error);
