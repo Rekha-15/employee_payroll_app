@@ -72,6 +72,7 @@ class EmployeePayrollData {
     }
 }
 
+//salary range
 const salary = document.querySelector('#salary');
 const salaryOutput = document.querySelector('.salary-output');
 salaryOutput.textContent = salary.value;
@@ -79,6 +80,7 @@ salary.oninput = function() {
     salaryOutput.textContent = salary.value;
 };
 
+//validation for name
 const name = document.querySelector('#name');
 const nameError = document.querySelector('.name-error');
 name.addEventListener('input', function() {
@@ -89,22 +91,30 @@ name.addEventListener('input', function() {
         nameError.textContent = "Name is incorrect";
 });
 
+//save function
 function save() {
     try {
         let name = document.querySelector('#name').value;
-        let gender = document.querySelector('input[name=gender]:checked').value;
-        let deptList = new Array();
-        let departments = document.querySelectorAll('input[name=department]:checked');
-        for (let i = 0; i < departments.length; i++) {
-            deptList.push(department[i].value);
+        let namefinal='';
+        if(name.charAt(0)===name.charAt(0).toLowerCase()){
+         namefinal="incorrect";
+        }else{
+            namefinal = name;
         }
+        let departments = document.querySelector('#department').value;
+        //let gender = document.querySelector('input[name=gender]:checked').value;
+        //let deptList = new Array();
+        //let departments = document.querySelectorAll('input[name=department]:checked');
+        //for (let i = 0; i < departments.length; i++) {
+           // deptList.push(department[i].value);
+        //}
         let salary = document.querySelector('#salary').value;
-        let year = document.querySelector('#year').value;
-        let month = document.querySelector('#month').value;
-        let day = document.querySelector('#day').value;
-        let startDate = `${day}-${month}-${year}`;
+        let startDate = document.querySelector('#startDate').value;
+        console.log("startdate",startDate);
+       
+                   
         let notes = document.querySelector('#notes').value;
-        let newEmployee = new EmployeePayrollData(name, gender, deptList, salary, startDate, notes);
+        let newEmployee = new EmployeePayrollData(namefinal, gender, departments, salary, startDate, notes);
         alert(newEmployee);
     } catch (error) {
         alert(error);
