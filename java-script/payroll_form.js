@@ -1,5 +1,4 @@
-//adding eventlisten to name
-window.addEventListener('DOMContentLoaded', (event) => {
+window.addEventListener('DOMContentLoaded', function() {
     const name = document.querySelector('#name');
     const nameError = document.querySelector('.name-error');
     name.addEventListener('input', function () {
@@ -15,28 +14,34 @@ window.addEventListener('DOMContentLoaded', (event) => {
         }
     });
 
-    //adding event listener to salary which will show salary bar
     const salary = document.querySelector('#salary');
     const salaryOutput = document.querySelector('.salary-output');
     salaryOutput.textContent = salary.value;
     salary.addEventListener('input', function () {
         salaryOutput.textContent = salary.value;
     });
-}); 
+});
 
-/**
- * Function to save the employee details
- */ 
 const save = () => {
     try {
-        let empPayrollData = createEmployeePayroll();
-        console.log(empPayrollData);
+        let employeePayrollData = createEmployeePayroll();
+        createAndUpdateStorage(employeePayrollData);
     } catch (e) {
         return;
     }
 }
 
-//creating employee payroll object on save
+function createAndUpdateStorage(employeePayrollData) {
+    let employeePayrollList = JSON.parse(localStorage.getItem("EmployeePayrollList"));
+    if (employeePayrollList != undefined) {
+        employeePayrollList.push(employeePayrollData);
+    } else {
+        employeePayrollList = [employeePayrollData];
+    }
+    alert(employeePayrollList.toString());
+    localStorage.setItem("EmployeePayrollList", JSON.stringify(employeePayrollList));
+}
+
 const createEmployeePayroll = () => {
     let employeePayrollData = new EmployeePayrollData();
     try {
@@ -49,7 +54,7 @@ const createEmployeePayroll = () => {
     employeePayrollData.department = getSelectedValues('[name=department]');
     employeePayrollData.salary = getInputValueById('#salary');
     employeePayrollData.notes = getInputValueById('#notes');
-
+    
     let date =  getInputValueById('#month') + " " + getInputValueById('#day') + " " + getInputValueById('#year');
     employeePayrollData.startDate = new Date(Date.parse(date));
     alert(employeePayrollData.toString());
@@ -74,10 +79,3 @@ const getInputElementValue = (id) => {
     let output = document.getElementById(id).value;
     return output;
 }
-
-    const salary = document.querySelector('#salary');
-    const salaryOutput = document.querySelector('.salary-output');
-    salaryOutput.textContent = salary.value;
-    salary.addEventListener('input', function () {
-        salaryOutput.textContent = salary.value;
-    });
