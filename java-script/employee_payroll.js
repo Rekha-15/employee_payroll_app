@@ -1,4 +1,4 @@
-class EmployeePayrollData {
+class EmployeePayroll {
     // Property
     name;
     gender;
@@ -97,7 +97,7 @@ salary.oninput = function() {
     salaryOutput.textContent = salary.value;
 };
 
-function save() {
+function save1() {
     try {
         let name = document.querySelector('#name').value;
         let gender = document.querySelector('input[name=gender]:checked').value;
