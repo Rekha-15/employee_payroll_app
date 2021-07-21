@@ -71,9 +71,6 @@ class EmployeePayrollData {
         presentDate = new Date(year, month, date);
         let differenceInTime = presentDate.getTime() - startDate.getTime(); 
         let differenceInDays = differenceInTime / (1000 * 60 * 60 * 24);
-        console.log("startdate",startDate);
-        console.log("presentdate",presentDate);
-        console.log("diff",differenceInDays);
         if (startDate  > presentDate)
             throw "Start Date should not be the future date";
         else if(differenceInDays <=30)
@@ -100,7 +97,7 @@ salary.oninput = function() {
     salaryOutput.textContent = salary.value;
 };
 
-function save1() {
+function save() {
     try {
         let name = document.querySelector('#name').value;
         let gender = document.querySelector('input[name=gender]:checked').value;
